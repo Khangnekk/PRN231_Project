@@ -1,0 +1,193 @@
+# Visual Studio
+.vs/
+.vscode/
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+.idea/.idea/
+
+# .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.log
+bin/
+obj/
+out/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/*.props
+#!**/packages/*.targets
+# Ignore package directories from other package managers
+**/node_modules/*
+**/bower_components/*
+*.eslintcache
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+*.code-workspace
+*.code-workspace.local
+
+# Rider
+.idea/
+*.sln.iml
+.idea/.idea/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLinters
+.idea/jsLinters.xml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vue-config.xml
+.idea/workspace.xml
+.idea/markdown-navigator.xml
+.idea/markdown-navigator.xml*
+
+# Rider
+.idea/.rider/
+
+# Rider logs
+.idea/.rider-logs/
+.idea/.rider-logs/
+
+# Rider indexes
+.idea/indexes/
+.idea/libraries/
+.idea/workspace.xml
+
+# Rider HTTP Client requests
+.idea/httpRequests/
+
+# Windows specific files
+.DS_Store
+ehthumbs.db
+Thumbs.db
+
+# macOS specific files
+.DS_Store
+
+# Files that might appear in the root of a repository
+.env
+.lock-wscript
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Crash reports
+report.*.json
+
+# Node modules
+node_modules/
+**/node_modules/
+.pnp/
+.pnp.js
+
+# Test files
+coverage/
+
+# Production
+build/
+
+# IDE Specific files
+.idea/
+.vscode/
+*.iml
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# next.js build output
+.next/
+
+# Nuxt.js build output
+.nuxt/
+dist/
+
+# Gatsby files
+.cache/
+# Comment in the public line in if your project doesn't use Gatsby's default folder structure
+# public
+
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# Expo
+.expo/
+.expo-shared/
+
+# Backup files
+*.bak
+
+# Documentation files
+docs/
+
+# Visual Studio for Mac
+.vscode
+.vscode/
+.vscode/*

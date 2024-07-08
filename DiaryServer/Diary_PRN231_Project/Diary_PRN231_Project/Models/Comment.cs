@@ -11,7 +11,8 @@ namespace Diary_PRN231_Project.Models
         public string Content { get; set; }
         public int PostId { get; set; }
         public DateTime CreatedAt { get; set; }
-
+        public DateTime UpdatedAt { get; set; }
+        public string Author { get; set; }
         [ForeignKey("PostId")]
         public Post Post { get; set; }
     }

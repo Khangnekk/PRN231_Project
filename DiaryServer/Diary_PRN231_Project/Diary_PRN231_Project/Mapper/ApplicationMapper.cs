@@ -12,5 +12,10 @@ public class ApplicationMapper : Profile
         CreateMap<Post, PostDto.PostDtoResponse>();
         CreateMap<PostDto.PostDtoCreateRequest, Post>();
         CreateMap<PostDto.PostDtoPut, Post>();
+        
+        // Map Comment
+        CreateMap<Comment, CommentDto.CommentDtoResponse>();
+        CreateMap<CommentDto.CommentDtoCreateRequest, Comment>();
+        CreateMap<CommentDto.CommentDtoPut, Comment>();
     }
 }

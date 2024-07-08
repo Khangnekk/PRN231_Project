@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Sign In & Registration Form</title>
-  <!---Custom CSS File--->
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
@@ -14,11 +12,11 @@
     <input type="checkbox" id="check">
     <div class="Sign-In form">
       <header>Sign In</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your email">
-        <input type="password" placeholder="Enter your password">
+      <form id="loginForm">
+        <input type="text" id="loginUsername" placeholder="Enter your username">
+        <input type="password" id="loginPassword" placeholder="Enter your password">
         <a href="#">Forgot password?</a>
-        <input type="button" class="button" value="Sign In">
+        <input type="button" class="button" value="Sign In" onclick="login()">
       </form>
       <div class="signup">
         <span class="signup">Don't have an account?
@@ -28,11 +26,12 @@
     </div>
     <div class="registration form">
       <header>Signup</header>
-      <form action="#">
-        <input type="text" placeholder="Enter your email">
-        <input type="password" placeholder="Create a password">
-        <input type="password" placeholder="Confirm your password">
-        <input type="button" class="button" value="Signup">
+      <form id="registerForm">
+        <input type="text" id="registerUsername" placeholder="Enter your username">
+        <input type="text" id="registerFullname" placeholder="Enter your fullname">
+        <input type="password" id="registerPassword" placeholder="Create a password">
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+        <input type="button" class="button" value="Signup" onclick="register()">
       </form>
       <div class="signup">
         <span class="signup">Already have an account?
@@ -41,5 +40,53 @@
       </div>
     </div>
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function login() {
+      var username = $("#loginUsername").val();
+      var password = $("#loginPassword").val();
+
+      $.ajax({
+        url: "http://localhost:5109/api/Auth/login",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({ Username: username, Password: password }),
+        success: function(response) {
+          alert("Login successful!");
+          localStorage.setItem("token", response.token); 
+          window.location.href = "views/mydiary.html"; 
+        },
+        error: function(xhr, status, error) {
+          alert("Login failed: " + xhr.responseText);
+        }
+      });
+    }
+
+    function register() {
+      var username = $("#registerUsername").val();
+      var fullname = $("#registerFullname").val();
+      var password = $("#registerPassword").val();
+      var confirmPassword = $("#confirmPassword").val();
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      $.ajax({
+        url: "http://localhost:5109/api/Auth/register",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({Username: username, Fullname: fullname, Password: password }),
+        success: function(response) {
+          alert("Registration successful!");
+          // Handle registration success (e.g., switch to login form, etc.)
+        },
+        error: function(xhr, status, error) {
+          alert("Registration failed: " + xhr.responseText);
+        }
+      });
+    }
+  </script>
 </body>
 </html>

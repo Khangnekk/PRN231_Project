@@ -7,15 +7,15 @@ namespace Diary_PRN231_Project.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public bool IsPublic { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        [ForeignKey("DiaryUser")]
         public string UserId { get; set; }
         
-        [ForeignKey("UserId")]
-        public DiaryUser User { get; set; }
+        public virtual DiaryUser? User { get; set; }
     }
 }

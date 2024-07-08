@@ -41,6 +41,9 @@ public class PostDAO
     {
         var post = _context.Posts.FirstOrDefault(p => p.Id == id);
         if (post == null) return null;
+        
+        var comments = _context.Comments.Where(c => c.Post.Id == id).ToList();
+        _context.Comments.RemoveRange(comments);
         _context.Posts.Remove(post);
         _context.SaveChanges();
         return post;

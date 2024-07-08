@@ -28,10 +28,10 @@ public class CommentController : Controller
     [HttpGet("MyPost/ByPostId/{id}")]
     public Task<IActionResult> CommentsByPostId(int id)
     {
-        var username = User.Claims.FirstOrDefault(claim => claim.Type == "username")?.Value;
+        var username = User.Claims.FirstOrDefault(claim => claim.Type == "name")?.Value;
         if (username == null) return Task.FromResult<IActionResult>(BadRequest("Username doesn't exist"));
 
-        var post = _postDao.GetByUsername(username)!.FirstOrDefault(p => p.Id == id);
+        var post = _postDao.GetMyPosts(username)!.FirstOrDefault(p => p.Id == id);
         if(post == null) return Task.FromResult<IActionResult>(Unauthorized("You don't have permission"));
         
         var comments = _commentRepository.CommentsByPostId(id);

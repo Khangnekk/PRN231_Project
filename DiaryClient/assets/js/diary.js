@@ -10,7 +10,7 @@ $(document).ready(function () {
     // Tạo nhật ký, đồng thời append vào newsfeed nếu bài đó là public
     $("#diarypostForm").submit(function (event) {
         event.preventDefault(); // Ngăn chặn form submit mặc định
-
+        var audio = document.getElementById('tengSound');
         var title = $("#postTitle").val();
         var content = $("#Content").val();
         var isPublic = $("#IsPrivacy").val() === "public";
@@ -66,6 +66,7 @@ $(document).ready(function () {
                 } else {
                     alert("Post saved as private, you can see in your profile");
                 }
+                audio.play();
             },
             statusCode: {
                 401: () =>{
@@ -175,6 +176,8 @@ $(document).ready(function () {
 
     // thêm comment, đồng thời append vào bài post đang comment
     $(document).on('click', '.add-comment-button', function () {
+        var audio = document.getElementById('clickSound');
+        audio.play();
         var postId = $(this).data('postid');
         var commentContent = $(`#add-comment-input-${postId}`).val();
         if (commentContent.trim() === '') {
@@ -218,6 +221,11 @@ $(document).ready(function () {
             },
             error: function (err) {
                 console.log('Error:', err);
+            },
+            statusCode: {
+                401: () =>{
+                    alert('You need to "Sign In" before do this action')
+                }
             }
         });
     });

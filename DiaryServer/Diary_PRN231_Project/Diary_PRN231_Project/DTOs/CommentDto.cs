@@ -30,6 +30,7 @@ public class CommentDto
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public string Author { get; set; }
+        public string FullName { get; set; }
     }
     
     public class CommentDtoPut

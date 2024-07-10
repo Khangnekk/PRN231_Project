@@ -74,6 +74,7 @@ builder.Services.AddAuthentication(options =>
     });
 builder.Services.AddScoped<PostDAO>();
 builder.Services.AddScoped<CommentDAO>();
+builder.Services.AddScoped<UserDAO>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddCors(options =>

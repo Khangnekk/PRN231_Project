@@ -1,4 +1,5 @@
 ﻿using Diary_PRN231_Project.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Diary_PRN231_Project.DAO;
 
@@ -13,9 +14,11 @@ public class PostDAO
 
     public Post? Insert(Post model)
     {
-        var userid = _context.Users.FirstOrDefault(u => u.UserName == model.UserId)?.Id;
+        var user = _context.Users.FirstOrDefault(u => u.UserName == model.UserId);
+        var userid = user!.Id;
         if (userid == null) return null;
         model.UserId = userid;
+        model.User = user;
         _context.Posts.Add(model);
         _context.SaveChanges();
         return model;
@@ -51,27 +54,35 @@ public class PostDAO
 
     public Post? Get(int id)
     {
-        var post = _context.Posts.FirstOrDefault(p => p.Id == id);
+        var post = _context.Posts.FirstOrDefault(p => p.Id == id && p.IsPublic == true);
         return post;
     }
     
     public List<Post>? GetByUsername(string username)
     {
         var userid = _context.Users.FirstOrDefault(u => u.UserName == username)?.Id;
-        var posts = _context.Posts.Where(p => p.UserId == userid && p.IsPublic == true).ToList();
+        var posts = _context.Posts
+            .OrderByDescending(p => p.CreatedAt)
+            .Where(p => p.UserId == userid && p.IsPublic == true)
+            .ToList();
         return posts;
     }
     
     public List<Post>? GetMyPosts(string username)
     {
         var userid = _context.Users.FirstOrDefault(u => u.UserName == username)?.Id;
-        var posts = _context.Posts.Where(p => p.UserId == userid).ToList();
+        var posts = _context.Posts
+            .OrderByDescending(p => p.CreatedAt)
+            .Where(p => p.UserId == userid).ToList();
         return posts;
     }
 
     public List<Post>? Posts()
     {
-        var posts = _context.Posts.ToList();
+        var posts = _context.Posts
+            .Include(u => u.User)
+            .OrderByDescending(p => p.CreatedAt)
+            .Where(p => p.IsPublic).ToList();
         return posts;
     }
 }

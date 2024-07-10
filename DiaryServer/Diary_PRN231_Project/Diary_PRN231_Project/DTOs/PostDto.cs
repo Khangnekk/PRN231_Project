@@ -29,7 +29,8 @@ public class PostDto
         public bool IsPublic { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public string UserId { get; set; }
+        public string Author { get; set; }
+        public string AuthorFullname { get; set; }
     }
     
     public class PostDtoPut

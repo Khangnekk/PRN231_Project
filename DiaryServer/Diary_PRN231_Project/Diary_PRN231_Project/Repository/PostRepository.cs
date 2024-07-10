@@ -9,9 +9,11 @@ public class PostRepository : IPostRepository
 {
     private readonly IMapper _mapper;
     private readonly PostDAO _postDao;
+    private readonly UserDAO _userDao;
     
-    public PostRepository(IMapper mapper, PostDAO postDao)
+    public PostRepository(IMapper mapper, PostDAO postDao, UserDAO userDao)
     {
+        _userDao = userDao;
         _postDao = postDao;
         _mapper = mapper;
     }

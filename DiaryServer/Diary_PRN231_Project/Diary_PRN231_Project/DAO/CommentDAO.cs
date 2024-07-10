@@ -14,7 +14,9 @@ public class CommentDAO
 
     public Comment? Insert(Comment model)
     {
-        _context.Add(model);
+        model.UpdatedAt = DateTime.Now;
+        model.CreatedAt = DateTime.Now;
+        _context.Comments.Add(model);
         _context.SaveChanges();
         return model;
     }
@@ -52,6 +54,7 @@ public class CommentDAO
     {
         var comments = _context.Comments
             .Include(c => c.Post)
+            .OrderByDescending(p => p.CreatedAt)
             .Where(c => c.PostId == id && c.Post.IsPublic == true)
             .ToList();
         return comments;
@@ -60,6 +63,7 @@ public class CommentDAO
     public List<Comment>? CommentsPostByPostId(int id)
     {
         var comments = _context.Comments
+            .OrderByDescending(p => p.CreatedAt)
             .Include(c => c.Post)
             .Where(c => c.PostId == id)
             .ToList();

@@ -75,4 +75,11 @@ public class PostController : Controller
         var posts = _postRepository.MyPosts(username);
         return Task.FromResult<IActionResult>(Ok(posts));
     }
+
+    [HttpGet("AllPublicPost")]
+    public Task<IActionResult> PublicPost()
+    {
+        var posts = _postRepository.Posts();
+        return Task.FromResult<IActionResult>(Ok(posts));
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using Diary_PRN231_Project.DAO;
 using Diary_PRN231_Project.DTOs;
 using Diary_PRN231_Project.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Diary_PRN231_Project.Controllers;
@@ -26,6 +27,7 @@ public class CommentController : Controller
     }
     
     [HttpGet("MyPost/ByPostId/{id}")]
+    [Authorize]
     public Task<IActionResult> CommentsByPostId(int id)
     {
         var username = User.Claims.FirstOrDefault(claim => claim.Type == "name")?.Value;
@@ -39,27 +41,29 @@ public class CommentController : Controller
     }
 
     [HttpPost("CreateComment")]
+    [Authorize]
     public Task<IActionResult> CreateComment([FromBody] CommentDto.CommentCreateRequest createRequest)
     {
-        var fullname = User.Claims.FirstOrDefault(claim => claim.Type == "fullname")?.Value;
-        if (fullname == null) return Task.FromResult<IActionResult>(BadRequest("Username doesn't exist"));
+        var username = User.Claims.FirstOrDefault(claim => claim.Type == "name")?.Value;
+        if (username == null) return Task.FromResult<IActionResult>(BadRequest("Username doesn't exist"));
         var comment = _commentRepository.Insert(new CommentDto.CommentDtoCreateRequest()
         {
             PostId = createRequest.PostId,
             Content = createRequest.Content,
-            Author = fullname
+            Author = username
         });
         return Task.FromResult<IActionResult>(Ok(comment));
     }
 
     [HttpPut("UpdateComment")]
+    [Authorize]
     public Task<IActionResult> UpdateComment([FromBody] CommentDto.CommentDtoPut commentDtoPut)
     {
         var comment = _commentRepository.Update(commentDtoPut);
         return Task.FromResult<IActionResult>(Ok(comment));
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Delete/{id}")]
     public Task<IActionResult> DeleteComment(int id)
     {
         var comment = _commentRepository.Delete(id);

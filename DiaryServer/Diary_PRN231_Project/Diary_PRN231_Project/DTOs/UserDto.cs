@@ -6,11 +6,11 @@ public class UserDto
 {
     public class UserDtoPutRequest
     {
-        [Required]
+        [Required(ErrorMessage = "Fullname is required")]
         public string? FullName { get; set; }
-        [Required,EmailAddress]
+        [Required(ErrorMessage = "EmailAddress is required"),EmailAddress]
         public string? Email { get; set; }
-        [Required,Phone]
+        [Required(ErrorMessage = "Phone number is required"),Phone]
         public string? PhoneNumber { get; set; }
     }
     

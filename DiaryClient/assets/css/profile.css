@@ -1,0 +1,45 @@
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header-info {
+    display: flex;
+    justify-self: left;
+    align-items: center;
+}
+
+.post-header-info img {
+    border-radius: 50%;
+}
+
+.more-btn button{
+    font-size: medium;
+    vertical-align: middle;
+    border: 1px  solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+.dropdown-menu-btn-more {
+    display: none;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .dropdown-menu-btn-more a{
+    color: rgb(54, 54, 54);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-menu-btn-more a:hover {
+    background-color: #f1f1f1;
+  }

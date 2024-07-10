@@ -23,6 +23,11 @@
          <label for="check">Signup</label>
         </span>
       </div>
+      <span class="guest">
+        <a href="views/newsfeed.html">
+          Xem với tư cách Guest
+        </a>
+      </span>
     </div>
     <div class="registration form">
       <header>Signup</header>
@@ -38,6 +43,11 @@
          <label for="check">Sign In</label>
         </span>
       </div>
+      <span class="guest">
+        <a href="views/newsfeed.html">
+          Xem với tư cách Guest
+        </a>
+      </span>
     </div>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -54,7 +64,7 @@
         success: function(response) {
           alert("Login successful!");
           localStorage.setItem("token", response.token); 
-          window.location.href = "views/mydiary.html"; 
+          window.location.href = "views/newsfeed.html"; 
         },
         error: function(xhr, status, error) {
           alert("Login failed: " + xhr.responseText);
@@ -80,7 +90,8 @@
         data: JSON.stringify({Username: username, Fullname: fullname, Password: password }),
         success: function(response) {
           alert("Registration successful!");
-          // Handle registration success (e.g., switch to login form, etc.)
+          $(".Sign-In").css("display", "block");
+          $(".registration").css("display", "none");
         },
         error: function(xhr, status, error) {
           alert("Registration failed: " + xhr.responseText);

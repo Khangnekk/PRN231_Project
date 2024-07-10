@@ -1,0 +1,279 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.container {
+  width: 50%;
+  margin: auto;
+  overflow: hidden;
+  
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+textarea {
+  width: 97%;
+  height: 100px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: large;
+}
+
+#postTitle {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.button {
+  float: right;
+  display: block;
+  width: 20%;
+  padding: 10px;
+  background: #2980ff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #496ca1;
+}
+
+.userInfo {
+  display: flex;
+  justify-content: start;
+  vertical-align: middle;
+}
+
+.userInfo h3 {
+  margin: 0em 0.5em 0.1em 0.5em;
+  color: #496ca1;
+}
+
+.userInfo p {
+  margin: 0 0 0 0.8em;
+  color: #5d5d5d;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.userInfo img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgb(156, 156, 156);
+}
+
+.nav {
+  position: sticky;
+  background-color: #f1f1f1;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo h2 {
+  margin: 0.5em 0.5em 0.5em 1em;
+}
+
+.logo a {
+  color: #5d5d5d;
+  text-decoration: none;
+}
+
+.avt-dropdown img {
+  border: 2px solid rgb(156, 156, 156);
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.avt-dropdown {
+  display: flex;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: rgb(54, 54, 54);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+#logout {
+  cursor: pointer;
+}
+
+.post {
+  border: 1px solid #000000;
+  padding: 0.75em;
+  border-radius: 9px;
+  margin-bottom: 2em;
+}
+
+.post-header {
+  display: flex;
+  justify-self: left;
+  align-items: center;
+}
+
+.post-header img{
+  border-radius: 50%;
+}
+
+.fullname {
+  font-weight: bold;
+}
+
+.post-time,
+.comment-time {
+  font-size: 0.75em;
+}
+
+.post-content-section {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.5em;
+}
+
+.post-body {
+  margin-left: 0.75em;
+}
+
+.comment {
+  border: 1px solid #ccc;
+  padding: 0.5em 2em 0.5em 0.5em;
+  width: fit-content;
+  margin: 0 0 0.5em 1em;
+  border-radius: 8px;
+}
+
+.comment-header {
+  display: flex;
+  justify-self: left;
+  align-items: center;
+}
+
+.comment-header img{
+  border: 1px solid #ccc;
+  object-fit: cover;
+}
+
+.comment-body {
+  margin-left: 0.5em;
+}
+
+.comment img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.comment-body p {
+  margin: 0.25em 0 0 2.5em;
+}
+
+.comment-username {
+  font-weight: bold;
+}
+
+.add-comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  border-radius: 9px;
+  margin-top: 1em;
+  min-width: 30em;
+}
+
+.add-comment img {
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+}
+
+.add-comment input{
+  margin-left: 1em;
+  width: 25em;
+  height: 2em;
+}
+
+.add-comment button {
+  height: 2em;
+  cursor: pointer;
+}
+
+.post-info {
+  margin-left: 0.75em;
+}
+
+#auth{
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.btn-auth {
+  width: fit-content;
+  border: 1px solid #ccc;
+  background-color: #e4403a;
+  border-radius: 10px;
+  padding: 0.5em;
+}
+
+#auth a{
+  padding: 0.5em 2em;
+  color: white;
+  text-decoration: none;
+}

@@ -88,3 +88,7 @@ body{
 .signup label:hover{
   text-decoration: underline;
 }
+.guest{
+  display: flex;
+  justify-content: center;
+}

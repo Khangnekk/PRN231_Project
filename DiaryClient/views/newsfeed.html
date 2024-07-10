@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>News Feed</title>
+    <link rel="stylesheet" href="../assets/css/newsfeed.css">
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/diary.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="logo">
+            <a href="newsfeed.html">
+                <h2>My Diary - PRN231</h2>
+            </a>
+        </div>
+        <div class="avt-dropdown">
+            <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"
+                height="40" width="40" title="null" id="avatar" class="avatar">
+            <div class="dropdown-menu" id="dropdownMenu">
+                <a href="profile.html">Profile</a>
+                <a href="setting.html">Settings</a>
+                <a id="logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="auth">
+            <div class="btn-auth">
+                <a href="../">Sign In / Sign Up </a>
+            </div>
+        </div>
+        <form id="diarypostForm">
+            <div class="userInfo">
+                <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" 
+                    height="50" width="50" class="avatar" />
+                <div>
+                    <h3 class="userFullName" title="">Guest</h3>
+                    <p>now</p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div style="width: 70%;">
+                    <input type="text" placeholder="Title" required id="postTitle" />
+                </div>
+                <div style="width: 20%;">
+                    <select id="IsPrivacy" name="Privacy">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                    </select>
+                </div>
+            </div>
+            <textarea id="Content" placeholder="How are you today?" required></textarea>
+            <input type="submit" class="button" value="Post">
+        </form>
+
+        <h2 style="margin-top: 1.2em;">News feeds</h2>
+        <div class="newsfeed-section" id="newsfeed-section">
+            
+        </div>
+    </div>
+</body>
+
+</html>

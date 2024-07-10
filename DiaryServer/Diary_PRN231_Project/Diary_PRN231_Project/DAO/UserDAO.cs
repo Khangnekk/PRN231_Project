@@ -1,4 +1,5 @@
-﻿using Diary_PRN231_Project.DTOs;
+﻿using AutoMapper;
+using Diary_PRN231_Project.DTOs;
 using Diary_PRN231_Project.Models;
 
 namespace Diary_PRN231_Project.DAO;
@@ -12,21 +13,18 @@ public class UserDAO
         _context = context;
     }
 
-    public bool? UpdateProfile(string username, UserDto.UserDtoPut userDtoPut, out string message)
+    public DiaryUser? UpdateProfile(UserDto.UserDtoPut userDtoPut)
     {
-        var user = _context.Users.FirstOrDefault(u => u.UserName == username);
-        if (user == null)
-        {
-            message = "User not found";
-            return null;
-        }
+        var user = _context.Users.FirstOrDefault(u => u.UserName == userDtoPut.UserName);
 
-        user.Fullname = userDtoPut.Fullname;
+        user!.Fullname = userDtoPut.FullName;
+        user.UserName = userDtoPut.UserName;
+        user.Email = userDtoPut.Email;
+        user.PhoneNumber = userDtoPut.PhoneNumber;
 
         _context.Users.Update(user);
         _context.SaveChanges();
-        message = "Profile update successfully";
-        return true;
+        return user;
     }
     
     public bool? UpdateAvatar(IFormFile? formFile, string username, out string message)
@@ -55,7 +53,7 @@ public class UserDAO
         message = "FormFile is null or empty.";
         return false;
     }
-
+    
     public string GetUsernameByUserId(string userId)
     {
         var user =
@@ -63,5 +61,13 @@ public class UserDAO
             .FirstOrDefault(u => u.Id == userId);
         var username = user.UserName;
         return username;
+    }
+
+    public DiaryUser? GetUserProfile(string username)
+    {
+        var user =
+            _context.Users
+                .FirstOrDefault(u => u.UserName == username);
+        return user;
     }
 }

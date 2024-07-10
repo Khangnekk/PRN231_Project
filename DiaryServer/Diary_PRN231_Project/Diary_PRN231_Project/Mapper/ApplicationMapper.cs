@@ -22,5 +22,9 @@ public class ApplicationMapper : Profile
         CreateMap<Comment, CommentDto.CommentDtoResponse>();
         CreateMap<CommentDto.CommentDtoCreateRequest, Comment>();
         CreateMap<CommentDto.CommentDtoPut, Comment>();
+
+        // Map User
+        CreateMap<DiaryUser, UserDto.UserDtoResponse>();
+        CreateMap<UserDto.UserDtoPutRequest, UserDto.UserDtoPut>();
     }
 }

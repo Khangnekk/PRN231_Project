@@ -77,6 +77,7 @@ builder.Services.AddScoped<CommentDAO>();
 builder.Services.AddScoped<UserDAO>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<IDiaryUserRepository, DiaryUserRepository>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",

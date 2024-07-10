@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting</title>
+    <link rel="stylesheet" href="../assets/css/setting.css">
     <link rel="stylesheet" href="../assets/css/newsfeed.css">
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../assets/js/common.js"></script>
+    <script src="../assets/js/setting.js"></script>
 </head>
 
 <body>
@@ -32,6 +34,25 @@
         <div id="auth">
             <div class="btn-auth">
                 <a href="../">Sign In / Sign Up </a>
+            </div>
+        </div>
+        <div id="mainSetting">
+            <div id="userInfomation">
+                <div class="userAvatarInfo">
+                    <div class="userAvatar">
+                        <img src="https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg" id="userAvatarImg" class="avatar"
+                        width="200" height="200"/><br>
+                    </div>
+                    <div class="file">
+                        <input type="file" name="avatar" id="avatarFile" />
+                    </div>
+                    <div class="btn-changeAvatar">
+                        <button id="changeAvatar">Change Avatar</button>
+                    </div>
+                </div>
+                <div class="userDetailInfo">
+                    
+                </div>
             </div>
         </div>
     </div>

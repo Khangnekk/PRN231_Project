@@ -173,10 +173,12 @@ select {
 .fullname {
   font-weight: bold;
 }
-
+.post-privary,
 .post-time,
 .comment-time {
+  align-items: center;
   font-size: 0.75em;
+  vertical-align: middle;
 }
 
 .post-content-section {

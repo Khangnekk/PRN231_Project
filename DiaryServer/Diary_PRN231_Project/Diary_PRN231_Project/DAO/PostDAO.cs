@@ -12,7 +12,7 @@ public class PostDAO
         _context = context;
     }
 
-    public Post? Insert(Post model)
+    public Post? Insert(Post model, IFormFile? postImage)
     {
         var user = _context.Users.FirstOrDefault(u => u.UserName == model.UserId);
         var userid = user!.Id;
@@ -21,6 +21,7 @@ public class PostDAO
         model.User = user;
         _context.Posts.Add(model);
         _context.SaveChanges();
+        UpdatePostImage(postImage,(int) model.Id, out var message);
         return model;
     }
     
@@ -84,5 +85,32 @@ public class PostDAO
             .OrderByDescending(p => p.CreatedAt)
             .Where(p => p.IsPublic).ToList();
         return posts;
+    }
+    
+    public bool? UpdatePostImage(IFormFile? formFile, int postId, out string message)
+    {
+        if (formFile != null && formFile.Length > 0)
+        {
+            using var memoryStream = new MemoryStream();
+            formFile.CopyTo(memoryStream);
+            var imageByteArray = memoryStream.ToArray();
+            if (memoryStream.Length < 2097152)
+            {
+                var updatePostImage = _context.Posts.FirstOrDefault(p => p.Id == postId);
+                if (updatePostImage == null)
+                {
+                    message = "Post not found";
+                    return false;
+                } 
+                updatePostImage.PostImage = imageByteArray;
+                _context.SaveChanges();
+                message = "Post updated successfully.";
+                return true;
+            }
+            message = "The file is too large to be uploaded.";
+            return false;
+        }
+        message = "FormFile is null or empty.";
+        return false;
     }
 }

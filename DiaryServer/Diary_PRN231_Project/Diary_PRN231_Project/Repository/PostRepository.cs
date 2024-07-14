@@ -18,9 +18,9 @@ public class PostRepository : IPostRepository
         _mapper = mapper;
     }
 
-    public PostDto.PostDtoResponse? Insert(PostDto.PostDtoCreateRequest createRequest)
+    public PostDto.PostDtoResponse? Insert(PostDto.PostDtoCreateRequest createRequest, IFormFile? postImage)
     {
-        var post = _postDao.Insert(_mapper.Map<PostDto.PostDtoCreateRequest, Post>(createRequest));
+        var post = _postDao.Insert(_mapper.Map<PostDto.PostDtoCreateRequest, Post>(createRequest), postImage);
         return post == null ? null : _mapper.Map<Post, PostDto.PostDtoResponse>(post);
     }
 

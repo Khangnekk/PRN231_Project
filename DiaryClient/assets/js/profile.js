@@ -5,10 +5,6 @@ $(document).ready(function () {
     if (avatarUrl == `http://localhost:5109/api/User/GetAvatar/null`)
         avatarUrl = `https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg`
 
-
-
-
-
     // Lấy ra tất cả các post của tôi (cả public và private)
     $.ajax({
         url: 'http://localhost:5109/api/Post/MyPosts',

@@ -22,9 +22,9 @@ public class CommentRepository : ICommentRepository
         return comment == null ? null : _mapper.Map<Comment, CommentDto.CommentDtoResponse>(comment);
     }
 
-    public CommentDto.CommentDtoResponse? Update(CommentDto.CommentDtoPut commentDtoPut)
+    public CommentDto.CommentDtoResponse? Update(CommentDto.CommentPut commentDtoPut)
     {
-        var comment = _commentDao.Update(_mapper.Map<CommentDto.CommentDtoPut, Comment>(commentDtoPut));
+        var comment = _commentDao.Update(_mapper.Map<CommentDto.CommentPut, Comment>(commentDtoPut));
         return comment == null ? null : _mapper.Map<Comment, CommentDto.CommentDtoResponse>(comment);
     }
 
@@ -45,7 +45,7 @@ public class CommentRepository : ICommentRepository
         var comments = _commentDao.CommentsInPublicPostByPostId(id);
         return comments == null ? null : _mapper.Map<List<Comment>, List<CommentDto.CommentDtoResponse>>(comments);
     }
-    
+
     public List<CommentDto.CommentDtoResponse>? CommentsByPostId(int id)
     {
         var comments = _commentDao.CommentsPostByPostId(id);

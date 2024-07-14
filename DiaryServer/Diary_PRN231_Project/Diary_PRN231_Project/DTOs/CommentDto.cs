@@ -11,7 +11,7 @@ public class CommentDto
         [Required]
         public int PostId { get; set; }
     }
-    
+
     public class CommentDtoCreateRequest
     {
         [Required]
@@ -21,7 +21,7 @@ public class CommentDto
         [Required]
         public string? Author { get; set; }
     }
-    
+
     public class CommentDtoResponse
     {
         public int Id { get; set; }
@@ -32,11 +32,19 @@ public class CommentDto
         public string Author { get; set; }
         public string FullName { get; set; }
     }
-    
+
     public class CommentDtoPut
     {
         public int Id { get; set; }
         public string Content { get; set; }
         public int PostId { get; set; }
+    }
+
+    public class CommentPut
+    {
+        public int Id { get; set; }
+        public string Content { get; set; }
+        public int PostId { get; set; }
+        public string Author { get; set; }
     }
 }

@@ -10,7 +10,7 @@ public class PostDto
         public string Content { get; set; }
         public bool IsPublic { get; set; }
     }
-    
+
     public class PostDtoCreateRequest
     {
         public string Title { get; set; }
@@ -20,7 +20,7 @@ public class PostDto
         public DateTime UpdatedAt { get; set; }
         public string UserId { get; set; }
     }
-    
+
     public class PostDtoResponse
     {
         public int? Id { get; set; }
@@ -31,8 +31,10 @@ public class PostDto
         public DateTime UpdatedAt { get; set; }
         public string Author { get; set; }
         public string AuthorFullname { get; set; }
+        
+        public bool haveImage { get; set; }
     }
-    
+
     public class PostDtoPut
     {
         [Required]

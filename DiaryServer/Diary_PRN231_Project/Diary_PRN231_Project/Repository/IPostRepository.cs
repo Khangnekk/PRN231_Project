@@ -4,7 +4,7 @@ namespace Diary_PRN231_Project.Repository;
 
 public interface IPostRepository
 {
-    PostDto.PostDtoResponse? Insert(PostDto.PostDtoCreateRequest createRequest);
+    PostDto.PostDtoResponse? Insert(PostDto.PostDtoCreateRequest createRequest, IFormFile? postImage);
     PostDto.PostDtoResponse? Update(PostDto.PostDtoPut postDtoPut);
     PostDto.PostDtoResponse? Delete(int id);
     List<PostDto.PostDtoResponse>? PostsByUserName(string username);

@@ -1,4 +1,4 @@
-﻿using System.Security.Claims;
+﻿using Diary_PRN231_Project.DAO;
 using Diary_PRN231_Project.DTOs;
 using Diary_PRN231_Project.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -10,15 +10,16 @@ namespace Diary_PRN231_Project.Controllers;
 public class PostController : Controller
 {
     private readonly IPostRepository _postRepository;
-
-    public PostController(IPostRepository postRepository)
+    private readonly PostDAO _postDao;
+    public PostController(IPostRepository postRepository, PostDAO postDao)
     {
+        _postDao = postDao;
         _postRepository = postRepository;
     }
 
     [HttpPost("CreatePost")]
     [Authorize]
-    public Task<IActionResult> CreatePost([FromBody] PostDto.PostCreateRequest model)
+    public Task<IActionResult> CreatePost([FromForm] PostDto.PostCreateRequest model, [FromForm] IFormFile? image)
     {
         var username = User.Claims.FirstOrDefault(claim => claim.Type == "name")?.Value;
         if (username == null) return Task.FromResult<IActionResult>(BadRequest("Username doesn't exist"));
@@ -29,8 +30,8 @@ public class PostController : Controller
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
             IsPublic = model.IsPublic,
-            UserId = username
-        });
+            UserId = username,
+        }, image);
         return Task.FromResult<IActionResult>(Ok(post));
     }
 
@@ -41,7 +42,7 @@ public class PostController : Controller
         var post = _postRepository.Update(postDtoPut);
         return Task.FromResult<IActionResult>(Ok(post));
     }
-    
+
     [HttpDelete("DeletePost/{id}")]
     [Authorize]
     public Task<IActionResult> DeletePost(int id)
@@ -57,7 +58,7 @@ public class PostController : Controller
         var post = _postRepository.PostById(id);
         return Task.FromResult<IActionResult>(Ok(post));
     }
-    
+
     [HttpGet("Posts")]
     [Authorize]
     public Task<IActionResult> Post(string username)
@@ -65,7 +66,7 @@ public class PostController : Controller
         var posts = _postRepository.PostsByUserName(username);
         return Task.FromResult<IActionResult>(Ok(posts));
     }
-    
+
     [HttpGet("MyPosts")]
     [Authorize]
     public Task<IActionResult> Post()
@@ -81,5 +82,16 @@ public class PostController : Controller
     {
         var posts = _postRepository.Posts();
         return Task.FromResult<IActionResult>(Ok(posts));
+    }
+    
+    [HttpGet("GetImage/{id}")]
+    public IActionResult GetImage(int id)
+    {
+        var post = _postDao.Get(id);
+        if (post?.PostImage != null)
+        {
+            return File(post.PostImage, "image/jpeg");
+        }
+        return NotFound();
     }
 }

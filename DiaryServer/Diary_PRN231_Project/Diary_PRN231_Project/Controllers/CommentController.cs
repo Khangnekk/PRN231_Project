@@ -25,7 +25,7 @@ public class CommentController : Controller
         var comments = _commentRepository.CommentsPublicPostByPostId(id);
         return Task.FromResult<IActionResult>(Ok(comments));
     }
-    
+
     [HttpGet("MyPost/ByPostId/{id}")]
     [Authorize]
     public Task<IActionResult> CommentsByPostId(int id)
@@ -34,8 +34,8 @@ public class CommentController : Controller
         if (username == null) return Task.FromResult<IActionResult>(BadRequest("Username doesn't exist"));
 
         var post = _postDao.GetMyPosts(username)!.FirstOrDefault(p => p.Id == id);
-        if(post == null) return Task.FromResult<IActionResult>(Unauthorized("You don't have permission"));
-        
+        if (post == null) return Task.FromResult<IActionResult>(Unauthorized("You don't have permission"));
+
         var comments = _commentRepository.CommentsByPostId(id);
         return Task.FromResult<IActionResult>(Ok(comments));
     }
@@ -57,9 +57,22 @@ public class CommentController : Controller
 
     [HttpPut("UpdateComment")]
     [Authorize]
-    public Task<IActionResult> UpdateComment([FromBody] CommentDto.CommentDtoPut commentDtoPut)
+    public Task<IActionResult> UpdateComment([FromBody] CommentDto.CommentDtoPut commentDto)
     {
+        var username = User.Claims.FirstOrDefault(claim => claim.Type == "name")?.Value;
+        var fullname = User.Claims.FirstOrDefault(claim => claim.Type == "fullname")?.Value;
+        if (username == null) return Task.FromResult<IActionResult>(BadRequest("Username doesn't exist"));
+
+        var commentDtoPut = new CommentDto.CommentPut
+        {
+            Id = commentDto.Id,
+            Content = commentDto.Content,
+            PostId = commentDto.PostId,
+            Author = username
+        };
+
         var comment = _commentRepository.Update(commentDtoPut);
+        comment.FullName = fullname;
         return Task.FromResult<IActionResult>(Ok(comment));
     }
 
@@ -69,5 +82,5 @@ public class CommentController : Controller
         var comment = _commentRepository.Delete(id);
         return Task.FromResult<IActionResult>(Ok(comment));
     }
-    
+
 }
